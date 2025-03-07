@@ -115,7 +115,6 @@ The implementation in nerf_dissolve.py introduces multiple techniques for achiev
 To run the rendering phase, with a pre-trained model:
 ```
 python run_nerf.py --config configs/lego.txt --ft_path logs/blender_lego/200000.tar --render_only
-
 ```
 
 IMPORTANT: In order to try different dissolution effects, you need to change this row in the run_nerf.py (raw2outputs function) file:
