@@ -11,7 +11,7 @@ The code for the NeRF model is based on authors' Tensorflow implementation [here
 ## Installation
 
 ```
-git clone https://github.com/yenchenlin/nerf-pytorch.git
+git clone https://github.com/mattiamaffo/Implementing-a-Scene-Dissolve-Effect-in-3D-Rendering-with-NeRF.git
 cd nerf-pytorch
 pip install -r requirements.txt
 ```
@@ -26,10 +26,6 @@ pip install -r requirements.txt
   - imageio
   - imageio-ffmpeg
   - configargparse
-  
-The LLFF data loader requires ImageMagick.
-
-You will also need the [LLFF code](http://github.com/fyusion/llff) (and COLMAP) set up to compute poses if you want to run on your own real data.
   
 </details>
 
