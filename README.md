@@ -109,21 +109,21 @@ You can download the pre-trained models [here](https://drive.google.com/drive/fo
 ```
 
 ## Method
+The dissolve effect in this project is achieved by modulating the density and opacity of the scene during rendering. This process allows objects or entire scenes to gradually appear or disappear, creating smooth transitions between different views.
+The implementation in nerf_dissolve.py introduces multiple techniques for achieving progressive scene fading.
 
-[NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis](http://tancik.com/nerf)  
- [Ben Mildenhall](https://people.eecs.berkeley.edu/~bmild/)\*<sup>1</sup>,
- [Pratul P. Srinivasan](https://people.eecs.berkeley.edu/~pratul/)\*<sup>1</sup>,
- [Matthew Tancik](http://tancik.com/)\*<sup>1</sup>,
- [Jonathan T. Barron](http://jonbarron.info/)<sup>2</sup>,
- [Ravi Ramamoorthi](http://cseweb.ucsd.edu/~ravir/)<sup>3</sup>,
- [Ren Ng](https://www2.eecs.berkeley.edu/Faculty/Homepages/yirenng.html)<sup>1</sup> <br>
- <sup>1</sup>UC Berkeley, <sup>2</sup>Google Research, <sup>3</sup>UC San Diego  
-  \*denotes equal contribution  
-  
-<img src='imgs/pipeline.jpg'/>
+To run the rendering phase, with a pre-trained model:
+```
+python run_nerf.py --config configs/lego.txt --ft_path logs/blender_lego/200000.tar --render_only
 
-> A neural radiance field is a simple fully connected network (weights are ~5MB) trained to reproduce input views of a single scene using a rendering loss. The network directly maps from spatial location and viewing direction (5D input) to color and opacity (4D output), acting as the "volume" so we can use volume rendering to differentiably render new views
+```
 
+IMPORTANT: In order to try different dissolution effects, you need to change this row in the run_nerf.py (raw2outputs function) file:
+
+```
+sigma, dissolve_mask = galaxy_swirl_dissolve(raw, pts, frame_idx, total_frames)
+```
+This is important because in the raw2outputs function, we implement the dissolve part of the project. In fact, after retrieving the parameters from the neural model, in the rendering phase, the parameters are leveraged with a dissolve mask that is useful to decrease the density of each point on the ray.
 
 ## Citation
 Kudos to the authors for their amazing results:
