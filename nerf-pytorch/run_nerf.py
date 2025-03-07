@@ -292,8 +292,7 @@ def raw2outputs(raw, z_vals, rays_o, rays_d, pts, raw_noise_std=0, white_bkgd=Fa
         torch.cat([torch.ones((alpha.shape[0], 1)), 1.-alpha + 1e-10], -1), -1
     )[:, :-1]
 
-    # 🔹 RIMUOVERE fade_factor dalla moltiplicazione dei pesi, usiamo dissolve_mask
-    weights = weights * dissolve_mask  # Applica la dissolvenza direttamente
+    weights = weights * dissolve_mask 
 
     rgb_map = torch.sum(weights[...,None] * rgb, -2)
 
@@ -301,7 +300,6 @@ def raw2outputs(raw, z_vals, rays_o, rays_d, pts, raw_noise_std=0, white_bkgd=Fa
     disp_map = 1./torch.max(1e-10 * torch.ones_like(depth_map), depth_map / torch.sum(weights, -1))
     acc_map = torch.sum(weights, -1)
 
-    # 🔹 Se vogliamo un background bianco, riempiamo con bianco
     if white_bkgd:
         rgb_map = rgb_map + (1.-acc_map[...,None])
 
