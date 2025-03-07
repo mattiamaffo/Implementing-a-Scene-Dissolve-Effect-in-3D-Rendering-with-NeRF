@@ -6,7 +6,7 @@
 ![](nerf-pytorch/assets/radial_dissolve.gif)
 ![](nerf-pytorch/assets/thanos_dissolve.gif)
 
-This project is a faithful PyTorch implementation of [NeRF](http://www.matthewtancik.com/nerf) that **reproduces** the results while running **1.3 times faster**. The code is based on authors' Tensorflow implementation [here](https://github.com/bmild/nerf), and has been tested to match it numerically. 
+The code for the NeRF model is based on authors' Tensorflow implementation [here](https://github.com/bmild/nerf), and this project explores and implements a scene dissolve effect using this model, allowing for smooth and controlled transitions between different 3D views, plus an additional post-processing part.
 
 ## Installation
 
